@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.game-info {
+.game_info {
     margin-top: 16px;
     width: 100%;
     display: flex;
@@ -16,7 +16,7 @@
 }
 
 
-.move-button {
+.move_button {
     width: 200px;
     background-color: #27ae60;
     border-width: 0px;

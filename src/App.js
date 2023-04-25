@@ -57,7 +57,7 @@ function App() {
     const desc = move 
       ? "Go to move" + move
       : "Go to game start" 
-      return <li key={move}><button onClick={()=>jumpTo(move)}>{desc}</button></li>
+      return <li key={move}><button className="move_button" onClick={()=>jumpTo(move)}>{desc}</button></li>
   });
 
   const jumpTo = (i) => {
@@ -73,7 +73,7 @@ function App() {
       </div>
       <div className="game_info">
         <div className="status">{status}</div>
-        <ol>
+        <ol style={{ listStyle: 'none' }}>
           {moves}
         </ol>
       </div>
