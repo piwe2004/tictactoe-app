@@ -1,52 +1,42 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Square from './Square'
 import "./Board.css"
 
-export default class Board extends Component {
+const Board = () => {
 
-    constructor(props){
-        super(props);
-        this.state={
-            squares:Array(9).fill(null),
-            nowPlayer : 'X'
-        }
-    }
+    const [squares, setSquares] = useState(Array(9).fill(null))
 
-    handleClick(i){
-        if(this.state.squares[i] === null){
-            const squares = this.state.squares.slice();
-            squares[i] = this.state.nowPlayer = this.state.nowPlayer === 'O' ? 'X' : "O"
-            this.setState({squares:squares})
-        }else{
-            alert('이미 선택된 자리입니다.')
-        }
+    const handleClick = (i) => {
+        const newSquares = squares.slice();
+        newSquares[i] = 'X'
+        setSquares(newSquares)
         
     }
 
-    rnderSquart(i){
-        return <Square value={this.state.squares[i]} onClick={()=>this.handleClick(i)} />
+    const rnderSquart = (i) => {
+        return <Square value={squares[i]} onClick={()=>handleClick(i)} />
     }
 
-    render() {
-        return (
-            <div>
-                <div className='status'>Next Player: {this.state.nowPlayer === 'X' ? 'O':'X'}</div>
-                <div className='board_row'>
-                    {this.rnderSquart(0)}
-                    {this.rnderSquart(1)}
-                    {this.rnderSquart(2)}
-                </div>
-                <div className='board_row'>
-                    {this.rnderSquart(3)}
-                    {this.rnderSquart(4)}
-                    {this.rnderSquart(5)}
-                </div>
-                <div className='board_row'>
-                    {this.rnderSquart(6)}
-                    {this.rnderSquart(7)}
-                    {this.rnderSquart(8)}
-                </div>
+    return (
+        <div>
+            <div className='status'>Next Player: X, O</div>
+            <div className='board_row'>
+                {rnderSquart(0)}
+                {rnderSquart(1)}
+                {rnderSquart(2)}
             </div>
-        )
-    }
+            <div className='board_row'>
+                {rnderSquart(3)}
+                {rnderSquart(4)}
+                {rnderSquart(5)}
+            </div>
+            <div className='board_row'>
+                {rnderSquart(6)}
+                {rnderSquart(7)}
+                {rnderSquart(8)}
+            </div>
+        </div>
+    )
 }
+
+export default Board
