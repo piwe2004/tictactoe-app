@@ -7,14 +7,20 @@ export default class Board extends Component {
     constructor(props){
         super(props);
         this.state={
-            squares:Array(9).fill(null)
+            squares:Array(9).fill(null),
+            nowPlayer : 'X'
         }
     }
 
     handleClick(i){
-        const squares = this.state.squares.slice();
-        squares[i] = 'X';
-        this.setState({squares:squares})
+        if(this.state.squares[i] === null){
+            const squares = this.state.squares.slice();
+            squares[i] = this.state.nowPlayer = this.state.nowPlayer === 'O' ? 'X' : "O"
+            this.setState({squares:squares})
+        }else{
+            alert('이미 선택된 자리입니다.')
+        }
+        
     }
 
     rnderSquart(i){
@@ -24,7 +30,7 @@ export default class Board extends Component {
     render() {
         return (
             <div>
-                <div className='status'>Next Player: X, O</div>
+                <div className='status'>Next Player: {this.state.nowPlayer === 'X' ? 'O':'X'}</div>
                 <div className='board_row'>
                     {this.rnderSquart(0)}
                     {this.rnderSquart(1)}
