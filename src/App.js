@@ -1,9 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import Board from './components/Board';
 
 function App() {
   return (
-    <div>
+    <div className='game'>
+      <div className='game_board'>
+        <Board />
+      </div>
+      <div className='game_info'></div>
     </div>
   );
 }
